@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser')
 var app = express();
 
 var port = process.env.PORT || 3000;
@@ -24,8 +25,11 @@ app.get('/middleware', function (request, response){
 // })
 
 app.get('/person/:id', function(req, res) {
-	res.render('person', { ID: req.params.id });
+	res.render('person', { ID: req.params.id, Qstr: req.query.qstr });
 });
+//Access qstr value from URL as shown below
+// http://localhost:3000/person/matt?qstr=123
+
 
 app.get('/api', function(request, response){
   response.json({
